@@ -1,0 +1,65 @@
+{% include 'base.html' %}
+{% block content %}
+<form method='POST' class="post-form">
+    {% csrf_token %}
+     {% if user.is_superuser %}
+     <div class="album py-5 bg-light">
+      <div class="container">
+        <button type="button" class="btn btn-sm btn-outline-secondary" ><a href="{% url 'ADD_personnel' %}"class="btn btn-default">Ajouter Personnel</a></button>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for article in personel %}
+            <div class="col ">
+                <div class="card shadow-sm">
+                  <img src='/media/{{ article.fichier_photo }}' class="card-img-top" height="200px"  width="200px">
+                  <div class="card-body">
+                    <figcaption class="figure-caption"> 
+                      {{article.nom}} 
+                       </figcaption>
+                       <p> {{article.lien_linkedln}} </p>
+                                 
+                        <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-primary" ><a href="{% url 'detail' article.id %}"class="btn btn-default">  View</a></button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'editPersonnel' article.id %}"class="btn btn-default">Edit</a></button>
+                      </div>
+                      <button type="button" class="btn btn-sm btn-outline-danger"><a href="{% url 'deletePersonnel' article.id %}"class="btn btn-default">Delete</a></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {%else%}
+        <div class="album py-5 bg-light">
+          <div class="container">
+            {% comment %} <button type="button" class="btn btn-sm btn-outline-secondary" ><a href="{% url 'ADD_personnel' %}"class="btn btn-default">Ajouter Personnel</a></button> {% endcomment %}
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for article in personel %}
+                <div class="col ">
+                    <div class="card shadow-sm">
+                      <img src='/media/{{ article.fichier_photo }}' class="card-img-top" height="200px"  width="200px">
+                      <div class="card-body">
+                        <figcaption class="figure-caption"> 
+                          {{article.nom}} 
+                           </figcaption>
+                           <p> {{article.lien_linkedln}} </p>
+                                     
+                            <div class="d-flex justify-content-between align-items-center">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-primary" ><a href="{% url 'detail' article.id %}"class="btn btn-default">  View</a></button>
+                            {% comment %} <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'editPersonnel' article.id %}"class="btn btn-default">Edit</a></button> {% endcomment %}
+                          </div>
+                          {% comment %} <button type="button" class="btn btn-sm btn-outline-danger"><a href="{% url 'deletePersonnel' article.id %}"class="btn btn-default">Delete</a></button> {% endcomment %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+        {% endif%}
+        
+{% endblock %}

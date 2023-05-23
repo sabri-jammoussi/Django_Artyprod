@@ -1,0 +1,88 @@
+{% include 'base.html' %}
+
+{% block content %}
+<style>
+.produit {
+background-color: #f0f0f0;
+padding: 20px;
+margin: 10px;
+}
+.produit h2 {
+font-size: 24px;
+color: #333;
+}
+.badge {
+padding: 4px 8px;
+border-radius: 4px;
+font-size: 14px;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-left: 10px;
+}
+.badge-completed {
+background-color: green;
+color: white;
+}
+.badge-pending {
+background-color: rgb(0, 128, 0);
+color: white;
+}
+.card {
+width: 300px;
+margin-top: 20px;
+}
+.card-img-top {
+object-fit: cover;
+height: 200px;
+width: 200px;
+}
+.card-body {
+padding: 16px;
+}
+.figure-caption {
+font-size: 20px;
+font-weight: 600;
+margin-top: 10px;
+margin-bottom: 8px;
+}
+.card-body p {
+font-size: 16px;
+line-height: 1.4;
+margin-bottom: 8px;
+}
+.card-body p:last-child {
+margin-bottom: 0;
+}
+.d-flex {
+display: flex;
+}
+.justify-content-between {
+justify-content: space-between;
+}
+.align-items-center {
+align-items: center;
+}
+
+</style>
+<article class="personnel">
+<header>
+{% comment %} <span class="badge {% if personnel.completed %}badge-completed{% else %}badge-pending{%endif%}">
+{% if personnel.completed %} Completed {%else%} En stock {%endif%}
+</span> {% endcomment %}
+</header>
+
+<center><div class="card shadow-sm">
+    <div class="row row-cols-7 row-cols-sm-7 row-cols-md-7 g-3">
+<img src='/media/{{ personnel.fichier_photo }}' >
+<div class="card-body">
+<figcaption class="figure-caption">
+
+</figcaption>
+<p>Name : {{personnel.nom}} </p>
+<p>linkedln : {{personnel.lien_linkedln}}  </p>
+<div class="d-flex justify-content-between align-items-center">
+</div>
+</div></div></center>
+</article>
+{% endblock content %}
